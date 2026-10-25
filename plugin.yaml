@@ -1,0 +1,38 @@
+name: apple-takvim
+version: 0.1.0
+manifest_version: 2
+api_version: 1
+license: MIT
+description: Apple (iCloud) Takvim — CalDAV üzerinden etkinlikleri listele, oluştur, güncelle, sil
+author: Muhammed Erkan
+tags: [calendar, apple, icloud, caldav]
+provides_tools:
+  - takvim_listele
+  - etkinlikleri_getir
+  - etkinlik_olustur
+  - etkinlik_guncelle
+  - etkinlik_sil
+requires_env:
+  - name: APPLE_ID
+    description: "iCloud hesabınızın e-posta adresi (Apple ID)"
+    url: "https://account.apple.com"
+  - name: APPLE_APP_PASSWORD
+    description: "Uygulamaya özel parola (normal parolanız DEĞİL). account.apple.com → Oturum Açma ve Güvenlik → Uygulamaya Özel Parolalar"
+    url: "https://account.apple.com/account/manage"
+    secret: true
+config_schema:
+  timezone:
+    type: str
+    default: "Europe/Istanbul"
+    label: "Saat dilimi"
+    description: "Tarihler bu saat diliminde okunur ve gösterilir (IANA adı)"
+  caldav_url:
+    type: str
+    default: "https://caldav.icloud.com"
+    label: "CalDAV adresi"
+    description: "Apple için değiştirmeyin. Test için yerel bir CalDAV sunucusu verilebilir."
+  varsayilan_takvim:
+    type: str
+    default: ""
+    label: "Varsayılan takvim"
+    description: "Takvim adı verilmeden etkinlik oluşturulursa kullanılacak takvim (boşsa ilk takvim)"
